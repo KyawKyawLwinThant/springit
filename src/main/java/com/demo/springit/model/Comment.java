@@ -4,10 +4,7 @@ package com.demo.springit.model;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Data
@@ -19,6 +16,8 @@ public class Comment {
   private String body;
 
   //link
+  @ManyToOne
+  private Link link;
 
 
 }
