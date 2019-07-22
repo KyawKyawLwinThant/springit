@@ -1,6 +1,10 @@
 package com.demo.springit;
 
 import com.demo.springit.config.SpringitProperties;
+import com.demo.springit.model.Comment;
+import com.demo.springit.model.Link;
+import com.demo.springit.repository.CommentRepository;
+import com.demo.springit.repository.LinkRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,19 +37,18 @@ public class SpringitApplication {
 
   @Bean
   @Profile("dev")
-  CommandLineRunner runner(){
+  CommandLineRunner runner(LinkRepository linkRepository, CommentRepository commentRepository){
     return  args -> {
-      System.out.println("This is something that we would only do in dev.");
-      System.out.println("================================================");
-      String[] beans=applicationContext.getBeanDefinitionNames();
-      Arrays.sort(beans);
-      Arrays.stream(beans).forEach(System.out::println);
+      Link link=new Link("thaw thaw","thawthaw@gmail.com");
 
-      log.error("CommandLineRunner.run()");
-      log.warn("CommandLineRunner.run()");
-      log.info("CommandLineRunner.run()");
-      log.debug("CommandLineRunner.run()");
-      log.trace("CommandLineRunner.run()");
+
+
+      Comment comment=new Comment("This is spring boot2",link);
+
+      link.getComments().add(comment);
+      linkRepository.save(link);
+      commentRepository.save(comment);
+
     };
   }
 }
