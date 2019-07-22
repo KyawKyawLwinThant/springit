@@ -36,7 +36,7 @@ public class SpringitApplication {
   }
 
   @Bean
-  @Profile("dev")
+  @Profile("production")
   CommandLineRunner runner(LinkRepository linkRepository, CommentRepository commentRepository){
     return  args -> {
       Link link=new Link("thaw thaw","thawthaw@gmail.com");
