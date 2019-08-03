@@ -21,6 +21,7 @@ import java.util.Arrays;
 
 @SpringBootApplication
 @EnableConfigurationProperties(SpringitProperties.class)
+
 public class SpringitApplication {
 
 
